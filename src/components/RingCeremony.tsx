@@ -1,13 +1,16 @@
 import { motion } from "framer-motion";
-import type { Ref } from "react";
+import type { RefObject } from "react";
+import { ArrowRight } from "lucide-react";
 import { weddingData as d } from "../data/weddingData";
 import { Ornament } from "./Ornament";
 
 export function RingCeremony({
   headingRef,
   reduced,
+  onDetails,
 }: {
-  headingRef: Ref<HTMLHeadingElement>;
+  headingRef: RefObject<HTMLHeadingElement | null>;
+  onDetails: () => void;
   reduced: boolean;
 }) {
   return (
@@ -16,7 +19,15 @@ export function RingCeremony({
       className="ring-invitation"
       initial={reduced ? false : { opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: reduced ? 0 : 0.7 }}
+      exit={{
+        opacity: 0,
+        y: reduced ? 0 : -18,
+        transition: { duration: reduced ? 0 : 0.35, delay: 0 },
+      }}
+      onAnimationComplete={() =>
+        headingRef.current?.focus({ preventScroll: true })
+      }
+      transition={{ duration: reduced ? 0 : 0.8, delay: reduced ? 0 : 0.7 }}
     >
       <div className="invitation-frame">
         <img
@@ -42,6 +53,11 @@ export function RingCeremony({
           <span />
           <span />
         </div>
+        <button type="button" className="ceremony-button" onClick={onDetails}>
+          <span aria-hidden="true">✧</span>
+          {d.detailsButton}
+          <ArrowRight size={18} strokeWidth={1.4} />
+        </button>
         <span className="corner-floral corner-left" aria-hidden="true">
           ❀
         </span>

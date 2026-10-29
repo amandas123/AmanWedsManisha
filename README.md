@@ -1,6 +1,12 @@
 # Aman & Manisha — Ring Ceremony
 
-A single-page invitation built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, and Lucide React. Tap or click the temple to open its two halves and reveal “Welcome to the Ring Ceremony of Aman and Manisha.” Enter and Space work too. Reduced-motion users receive an immediate reveal without the portal animation. Focus moves to the revealed invitation.
+An invitation built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, and Lucide React, with three views:
+
+1. A sky-blue temple cover with a transparent circular “Tap to Open” seal.
+2. “Welcome to the Ring Ceremony of Aman and Manisha,” with a button to continue.
+3. The ceremony date, Sunday, 6 December 2026, and Hotel Ankita with a Google Maps directions link.
+
+Click, tap, Enter, and Space open the temple. Pages transition with a soft fade and vertical movement. Reduced-motion users receive immediate transitions. Focus moves to each page’s heading. The invitation and details use `#invitation` and `#details` URLs, support browser history, and can be refreshed directly.
 
 ## Run
 
@@ -13,9 +19,9 @@ Node 22+ is recommended. `npm run build` type-checks and builds to `dist/`. `npm
 
 ## Personalize
 
-Edit `src/data/weddingData.ts` for the couple’s names and ceremony copy. Date and venue are omitted until confirmed. Replace `public/temple.svg` to change the transparent temple artwork. Fonts and artwork are bundled locally; no external services or credentials are needed.
+Edit `src/data/weddingData.ts` for the couple’s names, ceremony copy, date, venue, and Google Maps URL. No ceremony time has been supplied, so none is displayed. Replace `public/temple.svg` to change the transparent temple artwork. Fonts and artwork are bundled locally; no external services or credentials are needed.
 
-The site contains only the temple entrance and ring ceremony invitation. The previous wedding celebrations, story, RSVP, wishes, music, and other sections have been removed. No guest data is collected or stored.
+The site contains only the temple entrance, ring ceremony invitation, and date/venue page. The previous wedding celebrations, story, RSVP, wishes, music, and other sections have been removed. No guest data is collected or stored.
 
 Page title, description, social metadata, and favicon are in `index.html` and `public/`. Update these if changing the couple’s names. For social sharing, use an absolute publicly hosted raster image URL for `og:image`.
 

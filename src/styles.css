@@ -487,3 +487,290 @@ button:focus-visible {
     transition: none !important;
   }
 }
+/* Brighter cover lettering and a transparent circular seal. */
+.cover-copy .eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #fff;
+  text-shadow: 0 1px 5px #34637b99;
+}
+.cover-occasion {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 5px #34637b99;
+}
+.masthead-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: inherit;
+}
+.open-cue {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid #6e1f2ebb;
+  outline: 1px solid #b5965a99;
+  outline-offset: 5px;
+  box-shadow: none;
+  white-space: normal;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px;
+  color: #6e1f2e;
+  text-align: center;
+}
+.open-cue > span {
+  font-size: 25px;
+  line-height: 1.1;
+}
+.open-cue small {
+  font-size: 7px;
+  letter-spacing: 1.6px;
+  color: #6e1f2e;
+}
+.temple-button:hover .open-cue {
+  background: transparent;
+  border-color: var(--maroon);
+  box-shadow: 0 0 22px #fff9ef44;
+}
+.temple-button:focus-visible {
+  outline: none;
+}
+.temple-button:focus-visible .open-cue {
+  outline: 3px solid var(--maroon);
+  outline-offset: 7px;
+}
+.stage-footer {
+  font-size: 11px;
+  line-height: 1.7;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1.8px;
+  text-shadow:
+    0 1px 4px #633d21,
+    0 0 12px #633d2144;
+}
+.is-open .stage-footer {
+  color: #8b672e;
+  text-shadow: none;
+}
+.ceremony-button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 100%;
+  margin: 31px 0 6px;
+  padding: 17px 27px;
+  border: 1px solid var(--gold);
+  outline: 1px solid #b5965a77;
+  outline-offset: 5px;
+  background: var(--maroon);
+  color: #fff4d8;
+  cursor: pointer;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 23px;
+  transition:
+    background 0.25s,
+    box-shadow 0.25s;
+}
+.ceremony-button:hover {
+  background: #42131e;
+  box-shadow: 0 5px 20px #6e1f2e22;
+}
+.ceremony-button > span {
+  color: #e2c78d;
+}
+.ceremony-button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 6px;
+}
+.details-frame {
+  padding-top: 44px;
+}
+.details-page h1 {
+  font-size: clamp(40px, 5.5vw, 63px);
+  margin: 18px 0 8px;
+}
+.details-page h1 em {
+  font-weight: 400;
+}
+.date-poem {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  color: #917746;
+  font-size: 23px;
+  line-height: 1.7;
+}
+.ceremony-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 29px auto 24px;
+  color: var(--maroon);
+}
+.date-weekday {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 4px;
+}
+.date-day {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 118px;
+  line-height: 1.05;
+  font-weight: 400;
+}
+.date-month {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  line-height: 1.3;
+}
+.date-month > span {
+  margin-left: 8px;
+  color: #927340;
+}
+.details-message {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #7b6958;
+  max-width: 410px;
+  margin: 0 auto;
+}
+.venue-link {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #b5965a66;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 24px 23px;
+  background: #f8f0e344;
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+.venue-link:hover {
+  border-color: var(--gold);
+  background: #f8f0e3;
+}
+.venue-link > svg {
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.venue-label {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: #927340;
+}
+.venue-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 37px;
+  color: var(--maroon);
+  margin: 7px 0;
+}
+.venue-message {
+  font-size: 11px;
+  line-height: 1.9;
+  max-width: 290px;
+  color: #7b6958;
+}
+.directions-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--maroon);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  margin-top: 19px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #b5965a88;
+}
+.map-note {
+  font-size: 9px;
+  color: #8b7354;
+  margin: 12px 0 25px;
+}
+.back-button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #b5965a77;
+  padding: 5px 0;
+  color: var(--maroon);
+  font-size: 11px;
+  cursor: pointer;
+}
+a:focus-visible,
+.back-button:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 5px;
+}
+@media (max-width: 700px) {
+  .cover-copy .eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+  .cover-occasion {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+  }
+  .masthead-label {
+    font-size: 8px;
+    letter-spacing: 1.4px;
+  }
+  .stage-footer {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    margin: 23px 20px;
+  }
+  .open-cue {
+    width: 132px;
+    height: 132px;
+    padding: 15px;
+    bottom: 14%;
+    gap: 8px;
+  }
+  .open-cue > span {
+    font-size: 23px;
+  }
+  .ceremony-button {
+    font-size: 21px;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+  .details-page h1 {
+    font-size: 41px;
+  }
+  .date-poem {
+    font-size: 20px;
+  }
+  .date-day {
+    font-size: 103px;
+  }
+  .date-month {
+    font-size: 28px;
+  }
+  .details-frame {
+    padding-top: 35px;
+  }
+  .venue-link {
+    padding: 22px 17px;
+  }
+  .details-message {
+    font-size: 11px;
+  }
+}

@@ -1,22 +1,47 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Hand, Heart } from "lucide-react";
 import { weddingData as d } from "../data/weddingData";
 import { RingCeremony } from "./RingCeremony";
+import { CeremonyDetails } from "./CeremonyDetails";
 
 export function Hero() {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(() =>
+    ["#invitation", "#details"].includes(window.location.hash),
+  );
+  const [page, setPage] = useState(() =>
+    window.location.hash === "#details" ? "details" : "invitation",
+  );
   const [finished, setFinished] = useState(false);
   const reduced = useReducedMotion();
   const heading = useRef<HTMLHeadingElement>(null);
   const duration = reduced ? 0 : 1.45;
 
   useEffect(() => {
+    const syncPage = () => {
+      const isOpen = ["#invitation", "#details"].includes(window.location.hash);
+      setOpened(isOpen);
+      if (!isOpen) setFinished(false);
+      setPage(window.location.hash === "#details" ? "details" : "invitation");
+    };
+    window.addEventListener("popstate", syncPage);
+    window.addEventListener("hashchange", syncPage);
+    return () => {
+      window.removeEventListener("popstate", syncPage);
+      window.removeEventListener("hashchange", syncPage);
+    };
+  }, []);
+
+  function navigate(next: "invitation" | "details") {
+    window.history.pushState(null, "", `#${next}`);
+    setPage(next);
+  }
+
+  useEffect(() => {
     if (!opened) return;
     const timer = window.setTimeout(
       () => {
         setFinished(true);
-        heading.current?.focus({ preventScroll: true });
       },
       reduced ? 0 : 1500,
     );
@@ -64,9 +89,24 @@ export function Hero() {
         </div>
       )}
 
-      {opened && (
-        <RingCeremony headingRef={heading} reduced={Boolean(reduced)} />
-      )}
+      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+        {opened &&
+          (page === "details" ? (
+            <CeremonyDetails
+              key="details"
+              headingRef={heading}
+              reduced={Boolean(reduced)}
+              onBack={() => navigate("invitation")}
+            />
+          ) : (
+            <RingCeremony
+              key="invitation"
+              headingRef={heading}
+              reduced={Boolean(reduced)}
+              onDetails={() => navigate("details")}
+            />
+          ))}
+      </AnimatePresence>
 
       <motion.div
         className="portal-glow"
@@ -84,7 +124,10 @@ export function Hero() {
         aria-hidden={finished ? true : undefined}
         disabled={opened}
         style={{ visibility: finished ? "hidden" : "visible" }}
-        onClick={() => setOpened(true)}
+        onClick={() => {
+          window.history.pushState(null, "", "#invitation");
+          setOpened(true);
+        }}
         initial={false}
         animate={{
           scale: opened && !reduced ? 1.18 : 1,
@@ -117,7 +160,7 @@ export function Hero() {
           <span className="open-cue">
             <Hand size={18} strokeWidth={1.3} />
             <span>{d.openingPrompt}</span>
-            <small>AN INVITATION TO OUR FOREVER</small>
+            <small>OUR FOREVER</small>
           </span>
         )}
       </motion.button>
