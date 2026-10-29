@@ -2,9 +2,11 @@
 :root {
   font-family: "DM Sans", sans-serif;
   color: #291c1a;
-  background: #fff9ef;
+  background: var(--paper);
   font-synthesis: none;
   --ivory: #fff9ef;
+  --paper: #f0e2cb;
+  --backdrop: #e3cfad;
   --maroon: #6e1f2e;
   --gold: #b5965a;
 }
@@ -42,16 +44,16 @@ button:focus-visible {
   z-index: -3;
 }
 .sky {
-  background: linear-gradient(#81bad6 0%, #bbdfe9 60%, #f4e7ce 100%);
+  background: linear-gradient(#4f94bb 0%, #85b9cd 60%, #d8c4a3 100%);
 }
 .ivory-backdrop {
-  background: #fff9ef;
+  background: var(--backdrop);
   z-index: -2;
 }
 .cloud {
   position: absolute;
   filter: blur(16px);
-  opacity: 0.55;
+  opacity: 0.45;
   background: white;
   width: 380px;
   height: 66px;
@@ -651,14 +653,14 @@ button:focus-visible {
   max-width: 430px;
   margin: 0 auto;
   padding: 24px 23px;
-  background: #f8f0e344;
+  background: #e7d5b8aa;
   transition:
     border-color 0.25s,
     background 0.25s;
 }
 .venue-link:hover {
   border-color: var(--gold);
-  background: #f8f0e3;
+  background: #dfc7a4;
 }
 .venue-link > svg {
   color: var(--gold);
@@ -778,7 +780,7 @@ a:focus-visible,
 .book-page {
   transform-origin: 0% 50%;
   backface-visibility: hidden;
-  background: var(--ivory);
+  background: var(--paper);
 }
 .book-page-shade {
   position: absolute;
