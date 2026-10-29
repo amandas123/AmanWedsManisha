@@ -1,7 +1,7 @@
 import { pageTurnVariants, pageShadeVariants } from "./pageTurn";
 import { motion } from "framer-motion";
 import type { RefObject } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import { weddingData as d } from "../data/weddingData";
 import { Ornament } from "./Ornament";
 
@@ -54,11 +54,19 @@ export function RingCeremony({
           <span />
           <span />
         </div>
-        <button type="button" className="ceremony-button" onClick={onDetails}>
-          <span aria-hidden="true">✧</span>
+        <button
+          type="button"
+          className="ceremony-button"
+          onClick={onDetails}
+          aria-describedby="details-hint"
+        >
+          <CalendarDays size={20} strokeWidth={1.5} aria-hidden="true" />
           {d.detailsButton}
-          <ArrowRight size={18} strokeWidth={1.4} />
+          <ArrowRight size={18} strokeWidth={1.4} aria-hidden="true" />
         </button>
+        <p id="details-hint" className="button-hint">
+          {d.detailsHint}
+        </p>
         <span className="corner-floral corner-left" aria-hidden="true">
           ❀
         </span>

@@ -136,10 +136,13 @@ button:focus-visible {
   background: #fff9ef88;
 }
 .cover-note {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 20px;
-  font-style: italic;
-  margin-top: 18px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.8;
+  color: #fff;
+  text-shadow: 0 1px 5px #34637b99;
+  margin: 18px 22px 0;
 }
 .temple-button {
   position: absolute;
@@ -389,7 +392,7 @@ button:focus-visible {
     width: 30px;
   }
   .cover-note {
-    font-size: 18px;
+    font-size: 12px;
     margin: 18px 22px 0;
   }
   .temple-button {
@@ -467,7 +470,7 @@ button:focus-visible {
     font-size: 41px;
   }
   .cover-note {
-    font-size: 17px;
+    font-size: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -570,8 +573,16 @@ button:focus-visible {
   background: #42131e;
   box-shadow: 0 5px 20px #6e1f2e22;
 }
-.ceremony-button > span {
+.ceremony-button > svg {
   color: #e2c78d;
+}
+.button-hint {
+  position: relative;
+  z-index: 1;
+  margin: 15px 0 0;
+  color: var(--maroon);
+  font-size: 11px;
+  line-height: 1.7;
 }
 .ceremony-button:focus-visible {
   outline: 3px solid var(--gold);
