@@ -634,6 +634,12 @@ button:focus-visible {
   margin-left: 8px;
   color: #927340;
 }
+.ceremony-time {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
 .details-message {
   font-size: 12px;
   line-height: 1.9;

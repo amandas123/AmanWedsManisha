@@ -4,7 +4,7 @@ An invitation built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, a
 
 1. A sky-blue temple cover with a transparent circular “Tap to Open” seal.
 2. “Welcome to the Ring Ceremony of Aman and Manisha,” with a button to continue.
-3. The ceremony date, Sunday, 6 December 2026, and Hotel Ankita with a Google Maps directions link.
+3. The ceremony date, Sunday, 6 December 2026 at 12:00 PM, and Hotel Ankita with a Google Maps directions link.
 
 Click, tap, Enter, and Space open the temple. The invitation and date/venue pages turn around a shared left spine like book pages, with perspective and soft paper shadows. Back navigation reverses the turn. Reduced-motion users receive immediate transitions. Focus moves to each page’s heading. The invitation and details use `#invitation` and `#details` URLs, support browser history, and can be refreshed directly.
 
@@ -19,7 +19,7 @@ Node 22+ is recommended. `npm run build` type-checks and builds to `dist/`. `npm
 
 ## Personalize
 
-Edit `src/data/weddingData.ts` for the couple’s names, ceremony copy, date, venue, and Google Maps URL. No ceremony time has been supplied, so none is displayed. Replace `public/temple.svg` to change the transparent temple artwork. Fonts and artwork are bundled locally; no external services or credentials are needed.
+Edit `src/data/weddingData.ts` for the couple’s names, ceremony copy, date, venue, and Google Maps URL. The ceremony time is displayed as 12:00 PM beneath the date. Replace `public/temple.svg` to change the transparent temple artwork. Fonts and artwork are bundled locally; no external services or credentials are needed.
 
 The site contains only the temple entrance, ring ceremony invitation, and date/venue page. The previous wedding celebrations, story, RSVP, wishes, music, and other sections have been removed. No guest data is collected or stored.
 

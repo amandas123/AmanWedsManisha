@@ -40,14 +40,15 @@ export function CeremonyDetails({
         <p className="date-poem">{d.dateMessage}</p>
         <time
           className="ceremony-date"
-          dateTime={d.date}
-          aria-label={`${d.weekday}, ${d.dateLabel}`}
+          dateTime={`${d.date}T${d.time}`}
+          aria-label={`${d.weekday}, ${d.dateLabel}, ${d.timeLabel}`}
         >
           <span className="date-weekday">{d.weekday}</span>
           <span className="date-day">{d.day}</span>
           <span className="date-month">
             {d.month} <span>{d.year}</span>
           </span>
+          <span className="ceremony-time">{d.timeLabel}</span>
         </time>
         <p className="details-message">{d.detailsMessage}</p>
         <Ornament />

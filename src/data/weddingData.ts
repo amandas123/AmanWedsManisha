@@ -13,6 +13,8 @@ export const weddingData = {
   detailsButton: "View date & venue",
   detailsHint: "Tap or click to see when & where.",
   date: "2026-12-06",
+  time: "12:00",
+  timeLabel: "12:00 PM",
   weekday: "Sunday",
   day: "06",
   month: "December",
