@@ -1,3 +1,4 @@
+import { pageTurnVariants, pageShadeVariants } from "./pageTurn";
 import { motion } from "framer-motion";
 import type { RefObject } from "react";
 import { ArrowRight } from "lucide-react";
@@ -5,10 +6,12 @@ import { weddingData as d } from "../data/weddingData";
 import { Ornament } from "./Ornament";
 
 export function RingCeremony({
+  turnDirection,
   headingRef,
   reduced,
   onDetails,
 }: {
+  turnDirection: number;
   headingRef: RefObject<HTMLHeadingElement | null>;
   onDetails: () => void;
   reduced: boolean;
@@ -16,18 +19,16 @@ export function RingCeremony({
   return (
     <motion.article
       id="ring-ceremony"
-      className="ring-invitation"
-      initial={reduced ? false : { opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{
-        opacity: 0,
-        y: reduced ? 0 : -18,
-        transition: { duration: reduced ? 0 : 0.35, delay: 0 },
+      className="ring-invitation book-page"
+      custom={turnDirection}
+      variants={pageTurnVariants(reduced, turnDirection === 0 ? 0.7 : 0)}
+      initial="enter"
+      animate="visible"
+      exit="exit"
+      onAnimationComplete={(phase) => {
+        if (phase === "visible")
+          headingRef.current?.focus({ preventScroll: true });
       }}
-      onAnimationComplete={() =>
-        headingRef.current?.focus({ preventScroll: true })
-      }
-      transition={{ duration: reduced ? 0 : 0.8, delay: reduced ? 0 : 0.7 }}
     >
       <div className="invitation-frame">
         <img
@@ -65,6 +66,11 @@ export function RingCeremony({
           ❀
         </span>
       </div>
+      <motion.div
+        className="book-page-shade"
+        aria-hidden="true"
+        variants={pageShadeVariants(reduced)}
+      />
     </motion.article>
   );
 }

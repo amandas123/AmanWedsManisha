@@ -12,6 +12,7 @@ export function Hero() {
   const [page, setPage] = useState(() =>
     window.location.hash === "#details" ? "details" : "invitation",
   );
+  const [turnDirection, setTurnDirection] = useState(0);
   const [finished, setFinished] = useState(false);
   const reduced = useReducedMotion();
   const heading = useRef<HTMLHeadingElement>(null);
@@ -21,6 +22,9 @@ export function Hero() {
     const syncPage = () => {
       const isOpen = ["#invitation", "#details"].includes(window.location.hash);
       setOpened(isOpen);
+      setTurnDirection(
+        isOpen ? (window.location.hash === "#details" ? 1 : -1) : 0,
+      );
       if (!isOpen) setFinished(false);
       setPage(window.location.hash === "#details" ? "details" : "invitation");
     };
@@ -34,6 +38,7 @@ export function Hero() {
 
   function navigate(next: "invitation" | "details") {
     window.history.pushState(null, "", `#${next}`);
+    setTurnDirection(next === "details" ? 1 : -1);
     setPage(next);
   }
 
@@ -70,7 +75,6 @@ export function Hero() {
           <i>&</i>
           {d.bride[0]}
         </span>
-        <span className="masthead-label">THE {d.ceremony.toUpperCase()}</span>
         <Heart size={20} strokeWidth={1} aria-hidden="true" />
       </header>
 
@@ -89,11 +93,16 @@ export function Hero() {
         </div>
       )}
 
-      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+      <AnimatePresence
+        custom={turnDirection}
+        mode="wait"
+        onExitComplete={() => window.scrollTo(0, 0)}
+      >
         {opened &&
           (page === "details" ? (
             <CeremonyDetails
               key="details"
+              turnDirection={turnDirection}
               headingRef={heading}
               reduced={Boolean(reduced)}
               onBack={() => navigate("invitation")}
@@ -101,6 +110,7 @@ export function Hero() {
           ) : (
             <RingCeremony
               key="invitation"
+              turnDirection={turnDirection}
               headingRef={heading}
               reduced={Boolean(reduced)}
               onDetails={() => navigate("details")}
@@ -126,6 +136,7 @@ export function Hero() {
         style={{ visibility: finished ? "hidden" : "visible" }}
         onClick={() => {
           window.history.pushState(null, "", "#invitation");
+          setTurnDirection(0);
           setOpened(true);
         }}
         initial={false}

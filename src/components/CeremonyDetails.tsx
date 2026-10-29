@@ -1,3 +1,4 @@
+import { pageTurnVariants, pageShadeVariants } from "./pageTurn";
 import { motion } from "framer-motion";
 import type { RefObject } from "react";
 import { ArrowLeft, ArrowUpRight, MapPin } from "lucide-react";
@@ -5,10 +6,12 @@ import { weddingData as d } from "../data/weddingData";
 import { Ornament } from "./Ornament";
 
 export function CeremonyDetails({
+  turnDirection,
   headingRef,
   reduced,
   onBack,
 }: {
+  turnDirection: number;
   headingRef: RefObject<HTMLHeadingElement | null>;
   reduced: boolean;
   onBack: () => void;
@@ -16,18 +19,16 @@ export function CeremonyDetails({
   return (
     <motion.article
       id="ceremony-details"
-      className="ring-invitation details-page"
-      initial={reduced ? false : { opacity: 0, y: 22 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{
-        opacity: 0,
-        y: reduced ? 0 : 18,
-        transition: { duration: reduced ? 0 : 0.35, delay: 0 },
+      className="ring-invitation details-page book-page"
+      custom={turnDirection}
+      variants={pageTurnVariants(reduced, turnDirection === 0 ? 0.7 : 0)}
+      initial="enter"
+      animate="visible"
+      exit="exit"
+      onAnimationComplete={(phase) => {
+        if (phase === "visible")
+          headingRef.current?.focus({ preventScroll: true });
       }}
-      transition={{ duration: reduced ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-      onAnimationComplete={() =>
-        headingRef.current?.focus({ preventScroll: true })
-      }
     >
       <div className="invitation-frame details-frame">
         <p className="eyebrow blessing">
@@ -77,6 +78,11 @@ export function CeremonyDetails({
           ❀
         </span>
       </div>
+      <motion.div
+        className="book-page-shade"
+        aria-hidden="true"
+        variants={pageShadeVariants(reduced)}
+      />
     </motion.article>
   );
 }

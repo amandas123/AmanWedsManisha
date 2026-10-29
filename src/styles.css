@@ -90,10 +90,7 @@ button:focus-visible {
   font-size: 21px;
   margin: 0 5px;
 }
-.masthead-label {
-  font-size: 8px;
-  letter-spacing: 3px;
-}
+
 .is-open .masthead {
   color: var(--gold);
 }
@@ -367,10 +364,7 @@ button:focus-visible {
   .masthead {
     margin: 23px 24px 0;
   }
-  .masthead-label {
-    font-size: 6px;
-    letter-spacing: 1.7px;
-  }
+
   .masthead svg {
     width: 17px;
   }
@@ -460,9 +454,6 @@ button:focus-visible {
   }
 }
 @media (max-width: 360px) {
-  .masthead-label {
-    display: none;
-  }
   .cover-copy {
     margin-top: 65px;
   }
@@ -501,11 +492,7 @@ button:focus-visible {
   color: #fff;
   text-shadow: 0 1px 5px #34637b99;
 }
-.masthead-label {
-  font-size: 10px;
-  font-weight: 500;
-  color: inherit;
-}
+
 .open-cue {
   width: 148px;
   height: 148px;
@@ -728,10 +715,7 @@ a:focus-visible,
     font-size: 12px;
     letter-spacing: 2.5px;
   }
-  .masthead-label {
-    font-size: 8px;
-    letter-spacing: 1.4px;
-  }
+
   .stage-footer {
     font-size: 10px;
     letter-spacing: 1.2px;
@@ -773,4 +757,22 @@ a:focus-visible,
   .details-message {
     font-size: 11px;
   }
+}
+
+/* A solid paper leaf pivots at its left spine inside the stage's perspective. */
+.ceremony-stage {
+  perspective: 1800px;
+  perspective-origin: 50% 45%;
+}
+.book-page {
+  transform-origin: 0% 50%;
+  backface-visibility: hidden;
+  background: var(--ivory);
+}
+.book-page-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(90deg, #291c1a66, #6e1f2e11 45%, transparent 80%);
 }

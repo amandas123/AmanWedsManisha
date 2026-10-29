@@ -6,7 +6,7 @@ An invitation built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, a
 2. “Welcome to the Ring Ceremony of Aman and Manisha,” with a button to continue.
 3. The ceremony date, Sunday, 6 December 2026, and Hotel Ankita with a Google Maps directions link.
 
-Click, tap, Enter, and Space open the temple. Pages transition with a soft fade and vertical movement. Reduced-motion users receive immediate transitions. Focus moves to each page’s heading. The invitation and details use `#invitation` and `#details` URLs, support browser history, and can be refreshed directly.
+Click, tap, Enter, and Space open the temple. The invitation and date/venue pages turn around a shared left spine like book pages, with perspective and soft paper shadows. Back navigation reverses the turn. Reduced-motion users receive immediate transitions. Focus moves to each page’s heading. The invitation and details use `#invitation` and `#details` URLs, support browser history, and can be refreshed directly.
 
 ## Run
 
