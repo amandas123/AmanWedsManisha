@@ -11,7 +11,7 @@ const countdownUnits = [
   { label: "Seconds", seconds: 1 },
 ];
 
-function Countdown() {
+function Countdown({ opened }: { opened: boolean }) {
   const [now, setNow] = useState(Date.now);
 
   useEffect(() => {
@@ -26,7 +26,8 @@ function Countdown() {
   const remaining = Math.max(0, Math.ceil((ceremonyStart - now) / 1000));
 
   return (
-    <section className="section countdown" aria-labelledby="countdown-title">
+    <section className="section framed-section countdown" aria-labelledby="countdown-title">
+      <FloralFrame opened={opened} />
       <h2 id="countdown-title">Counting down</h2>
       <Divider />
       {remaining > 0 ? (
@@ -59,6 +60,40 @@ function Botanical({ className }: { className: string }) {
       <span className="stem" />
       {Array.from({ length: 8 }, (_, index) => <i key={index} style={{ top: `${index * 10 + 13}%` }} />)}
       <span className="blossom">✿</span>
+    </div>
+  );
+}
+
+function FloralFrame({ opened }: { opened: boolean }) {
+  const frame = useRef<HTMLDivElement>(null);
+  const [showPetals, setShowPetals] = useState(false);
+
+  useEffect(() => {
+    const element = frame.current;
+    if (!opened || showPetals || !element || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.intersectionRatio < .25) return;
+      setShowPetals(true);
+      observer.disconnect();
+    }, { threshold: .25 });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [opened, showPetals]);
+
+  return (
+    <div className="floral-frame" ref={frame} aria-hidden="true">
+      <Botanical className="frame-sprig frame-top-left" />
+      <Botanical className="frame-sprig frame-top-right" />
+      <Botanical className="frame-sprig frame-bottom-left" />
+      <Botanical className="frame-sprig frame-bottom-right" />
+      {showPetals && (
+        <div className="petal-fall">
+          {[9, 85, 18, 92, 30, 70].map((left, index) => (
+            <span className="falling-petal" key={left} style={{ left: `${left}%`, animationDelay: `${index * 150}ms` }} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -101,6 +136,7 @@ export default function App() {
   return (
     <>
       <div className={`entrance${opened ? " entrance-open" : ""}`} inert={opened}>
+        <div className="stage-light" aria-hidden="true" />
         <div className="stage-curtain stage-curtain-left" aria-hidden="true" />
         <div className="stage-curtain stage-curtain-right" aria-hidden="true" />
         <div className="cover-door cover-door-left" aria-hidden="true" />
@@ -128,29 +164,25 @@ export default function App() {
         </section>
 
         <div className="letter">
-          <div className="floral-frame" aria-hidden="true">
-            {["left", "right"].map((side) => (
-              <div className={`floral-rail floral-rail-${side}`} key={side}>
-                {Array.from({ length: 6 }, (_, index) => <Botanical key={index} className="frame-sprig" />)}
-              </div>
-            ))}
-          </div>
-          <section id="greetings" className="section greeting" aria-labelledby="greetings-title">
+          <section id="greetings" className="section framed-section greeting" aria-labelledby="greetings-title">
+            <FloralFrame opened={opened} />
             <Divider />
             <h2 id="greetings-title">Dear family &amp; friends</h2>
             <p>We warmly invite you to celebrate the Ring Ceremony of Aman and Manisha. Join us as we exchange rings and begin this new chapter together.</p>
             <p>With love and gratitude,<br />Aman &amp; Manisha</p>
           </section>
 
-          <section className="section date-section" aria-labelledby="date-title">
+          <section className="section framed-section date-section" aria-labelledby="date-title">
+            <FloralFrame opened={opened} />
             <h2 id="date-title">Scratch to reveal</h2>
             <Divider />
             <ScratchDate />
           </section>
 
-          <Countdown />
+          <Countdown opened={opened} />
 
-          <section id="details" className="section venue" aria-labelledby="venue-title">
+          <section id="details" className="section framed-section venue" aria-labelledby="venue-title">
+            <FloralFrame opened={opened} />
             <MapPin size={25} strokeWidth={1.4} aria-hidden="true" />
             <h2 id="venue-title">The Venue</h2>
             <Divider />
