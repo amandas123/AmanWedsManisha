@@ -101,16 +101,8 @@ export default function App() {
   return (
     <>
       <div className={`entrance${opened ? " entrance-open" : ""}`} inert={opened}>
-        <div className="door door-left" aria-hidden="true">
-          <Botanical className="door-top" />
-          <Botanical className="door-middle" />
-          <Botanical className="door-bottom" />
-        </div>
-        <div className="door door-right" aria-hidden="true">
-          <Botanical className="door-top" />
-          <Botanical className="door-middle" />
-          <Botanical className="door-bottom" />
-        </div>
+        <div className="cover-curtain cover-curtain-left" aria-hidden="true" />
+        <div className="cover-curtain cover-curtain-right" aria-hidden="true" />
         <button type="button" className="seal" onClick={openInvitation} aria-label="Open Aman and Manisha’s invitation">
           <span className="seal-monogram" aria-hidden="true">A &amp; M</span>
           <span>{d.openingPrompt}</span>
@@ -119,12 +111,6 @@ export default function App() {
 
       <main className="invitation" inert={!opened}>
         <section id="invitation" className="hero" aria-labelledby="couple">
-          <div className="curtains" aria-hidden="true">
-            <span className="swag" /><span className="swag" /><span className="swag" />
-            <span className="drape drape-left" /><span className="drape drape-right" />
-          </div>
-          <Botanical className="hero-flower hero-flower-left" />
-          <Botanical className="hero-flower hero-flower-right" />
           <div className="hero-copy">
             <p className="eyebrow">{d.blessing}</p>
             <h1 id="couple" ref={heading} tabIndex={-1}>{d.groom} <span>&amp;</span> {d.bride}</h1>
