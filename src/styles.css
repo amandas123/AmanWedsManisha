@@ -40,7 +40,7 @@ h1, h2, p, dl, dd { margin: 0; }
   transition: visibility 0s calc(var(--door-duration) + var(--curtain-duration));
 }
 
-.cover-door, .stage-light {
+.stage-light {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 50% 44%, #ffe6ad55, #45241885);
@@ -49,7 +49,7 @@ h1, h2, p, dl, dd { margin: 0; }
 }
 .entrance-open .stage-light { opacity: 0; }
 
-.stage-curtain {
+.cover-door, .stage-curtain {
   position: absolute;
   inset-block: 0;
   width: 50%;
@@ -60,7 +60,7 @@ h1, h2, p, dl, dd { margin: 0; }
   z-index: 1;
   background-color: #555734;
   backface-visibility: hidden;
-  transition: transform var(--door-duration) cubic-bezier(.7, .04, .2, 1), filter var(--door-duration) ease;
+  transition: transform var(--door-duration) cubic-bezier(.65, .05, .25, 1), opacity .2s ease;
 }
 
 .cover-door::before {
@@ -82,14 +82,17 @@ h1, h2, p, dl, dd { margin: 0; }
   pointer-events: none;
 }
 .cover-door-left::after {
-  background: linear-gradient(90deg, transparent calc(100% - 45px), #1e20168c calc(100% - 5px), #e8cb92 calc(100% - 2px), #9d7948);
+  background: linear-gradient(90deg, transparent calc(100% - 16px), #1e20164d calc(100% - 2px), #cbb17b calc(100% - 1px));
 }
 .cover-door-right::after {
-  background: linear-gradient(90deg, #262116 0 2px, #31251b90 4px, #e7cc8c20 12px, transparent 48px);
+  background: linear-gradient(90deg, #262116 0 1px, #31251b66 2px, transparent 15px);
 }
-.entrance-open .cover-door { filter: brightness(.72); }
-.entrance-open .cover-door-left { transform: rotateY(-100deg); }
-.entrance-open .cover-door-right { transform: rotateY(100deg); }
+.entrance-open .cover-door {
+  opacity: 0;
+  transition-delay: 0s, calc(var(--door-duration) - .2s);
+}
+.entrance-open .cover-door-left { transform: rotateY(90deg); }
+.entrance-open .cover-door-right { transform: rotateY(-90deg); }
 
 .stage-curtain {
   background:
