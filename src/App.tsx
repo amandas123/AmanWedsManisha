@@ -86,7 +86,7 @@ export default function App() {
     if (opened && window.location.hash === "#details") {
       document.getElementById("details")?.scrollIntoView();
     } else if (opened && hasNavigated.current) {
-      heading.current?.focus();
+      heading.current?.focus({ preventScroll: true });
     } else if (!opened) {
       window.scrollTo(0, 0);
     }
@@ -101,11 +101,18 @@ export default function App() {
   return (
     <>
       <div className={`entrance${opened ? " entrance-open" : ""}`} inert={opened}>
-        <div className="cover-curtain cover-curtain-left" aria-hidden="true" />
-        <div className="cover-curtain cover-curtain-right" aria-hidden="true" />
+        <div className="stage-curtain stage-curtain-left" aria-hidden="true" />
+        <div className="stage-curtain stage-curtain-right" aria-hidden="true" />
+        <div className="cover-door cover-door-left" aria-hidden="true" />
+        <div className="cover-door cover-door-right" aria-hidden="true" />
         <button type="button" className="seal" onClick={openInvitation} aria-label="Open Aman and Manisha’s invitation">
-          <span className="seal-monogram" aria-hidden="true">A &amp; M</span>
-          <span>{d.openingPrompt}</span>
+          <span className="seal-plaque">
+            <span className="seal-scroll seal-scroll-top" aria-hidden="true">❦</span>
+            <span className="seal-scroll seal-scroll-bottom" aria-hidden="true">❦</span>
+            <span className="seal-sprig" aria-hidden="true">❧</span>
+            <span>{d.openingPrompt}</span>
+            <span className="seal-sprig seal-sprig-bottom" aria-hidden="true">❧</span>
+          </span>
         </button>
       </div>
 
@@ -121,9 +128,14 @@ export default function App() {
         </section>
 
         <div className="letter">
+          <div className="floral-frame" aria-hidden="true">
+            {["left", "right"].map((side) => (
+              <div className={`floral-rail floral-rail-${side}`} key={side}>
+                {Array.from({ length: 6 }, (_, index) => <Botanical key={index} className="frame-sprig" />)}
+              </div>
+            ))}
+          </div>
           <section id="greetings" className="section greeting" aria-labelledby="greetings-title">
-            <Botanical className="corner corner-left" />
-            <Botanical className="corner corner-right" />
             <Divider />
             <h2 id="greetings-title">Dear family &amp; friends</h2>
             <p>We warmly invite you to celebrate the Ring Ceremony of Aman and Manisha. Join us as we exchange rings and begin this new chapter together.</p>
